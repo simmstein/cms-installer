@@ -1,7 +1,10 @@
 app:
+  version: 0.1
+  author: 'Simon Vieille'
+  contact: 'simon@deblan.fr / www.deblan.tv'
   rules:
     "version|v"   : ~
-    "help|h"      : ~
+    "help|h-s"    : ~
     "install|i=w" : ~
 
   configuration:
@@ -14,13 +17,13 @@ app:
 
     help: 
       description: "Show help"
-      param: ~
+      param: '[command]'
       callback:
         class: Information
         method: help
       
     install:
-      param: '<cms name>'
+      param: 'cms_name'
       description: "Install a CMS"
       callback:
         class: Installation

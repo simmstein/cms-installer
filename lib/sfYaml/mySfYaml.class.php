@@ -10,6 +10,19 @@ class mySfYaml extends sfYaml {
 		return self::$file_content;
 	}
 
+	public static function merge($input) {
+		if(!self::$file_loaded) {
+			return self::load($input);
+		}
+
+		self::$file_content = array_merge(self::$file_content, (array)parent::load($input));
+		return self::$file_content;
+	}
+
+	public static function getAll() {
+		return self::$file_content;
+	}
+
 	public static function get($var) {
 		if(!self::$file_loaded) {
 			throw new Exception('Yaml file is not loaded yet, please see sfYaml::load method');			

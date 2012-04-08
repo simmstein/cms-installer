@@ -1,18 +1,19 @@
 <?php
 
 class CmsInstallerApp {
-	const   VERSION = 0.1;
-	const   AUTHOR  = 'Simon Vieille (simon@deblan.fr)';
-	private static $root   = ''; 
 	private static $rules  = array();
 	private $opts;
 	private $argv;
 
 	public function __construct($argv) {
 		require_once('Zend'.DIRECTORY_SEPARATOR.'Console'.DIRECTORY_SEPARATOR.'Getopt.php');
-		self::$root = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
 		$this->argv = $argv;
-		mySfYaml::load(self::$root.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.yml');
+
+		$files = sfFinder::type('file')->name('*.yml')->in(ROOT.DIRECTORY_SEPARATOR.'config');
+
+		foreach($files as $file) {
+			mySfYaml::merge($file);
+		}
 	}
 
 	public function init() {
@@ -21,7 +22,6 @@ class CmsInstallerApp {
 		if(count($this->argv) > 1) {
 			try {
 				$this->opts->parse();
-
 				foreach($this->opts->getOptions() as $arg) {
 					$opt_config = mySfYaml::get('app_configuration_'.$arg);
 					

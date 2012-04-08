@@ -1,8 +1,14 @@
 #!/usr/bin/env php
 <?php
-require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'autoload'.DIRECTORY_SEPARATOR.'Autoload.class.php';
+define('ROOT', dirname(__FILE__));
+
+require_once ROOT.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'autoload'.DIRECTORY_SEPARATOR.'Autoload.class.php';
 Autoload::register();
 
-$CmsInstallerApp = new CmsInstallerApp($argv);
-$CmsInstallerApp->init();
-
+try {
+	$CmsInstallerApp = new CmsInstallerApp($argv);
+	$CmsInstallerApp->init();
+}
+catch(Exception $e) {
+	Cli::printError('Fatal error', $e->getMessage());
+}
