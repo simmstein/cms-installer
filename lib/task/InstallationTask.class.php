@@ -1,5 +1,5 @@
 <?php
-	
+
 class InstallationTask extends BasicTask {
 	public function executeInstall() {
 		$this->arg_cms     = $this->value;
@@ -29,6 +29,7 @@ class InstallationTask extends BasicTask {
 
 			$this->tempName = $this->getTempName();
 			$this->download();
+			echo PHP_EOL;
 			$this->unpack();			
 		}
 		catch(CmsInstallerException $e) {
@@ -39,30 +40,40 @@ class InstallationTask extends BasicTask {
 		exit(0);	
 	}
 
+	public static function progressBar($curl, $fd) {
+		if($curl) {
+			$purcent  = round(100*$fd/$curl, 2);
+			$progress = str_pad($purcent.'%', 5, ' ', STR_PAD_RIGHT);
+			echo "\r";
+			Cli::printInfoNoEOL('Progress', $progress);
+		}
+	}
+
 	public function download() {
 		Cli::printInfo('Download started', 'Please wait...');
 	
 		$fileopen = fopen($this->tempName, 'w');
-		$curl = curl_init($this->cms_version_url);
-		curl_setopt($curl, CURLOPT_FILE, $fileopen);
-		$data = curl_exec($curl);
-		curl_close($curl);
-		fclose($fileopen);
+		$curl     = curl_init($this->cms_version_url);
 
-		if(!$data) {
+		curl_setopt($curl, CURLOPT_FILE, $fileopen);
+		curl_setopt($curl, CURLOPT_NOPROGRESS, false);
+		curl_setopt($curl, CURLOPT_PROGRESSFUNCTION, 'InstallationTask::progressBar');
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+
+		if(curl_errno($curl)) {
+			fclose($fileopen);
 			unlink($this->tempName);	
 			throw new CmsInstallerException('Download has failed.');
 		}
 
-		Cli::printInfo('Finished', '');
+		curl_exec($curl);
+		curl_close($curl);
+		fclose($fileopen);
 	}
 
 	public function unpack() {
 		Cli::printInfo('Unpack', 'Please wait...');
-
-		
-
-		Cli::printInfo('Finished', '');
 	}
 
 	public function getTempName() {
