@@ -1,0 +1,5 @@
+app:
+  rules:
+    "version|v"   : "Show CMS Installer version"
+    "help|h"      : "Show help"
+    "install|i=w" : "Install a CMS"
