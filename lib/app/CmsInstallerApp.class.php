@@ -16,14 +16,14 @@ class CmsInstallerApp {
 	}
 
 	public function init() {
-		$this->opts = new Zend_Console_Getopt(mySfYaml::get('app_rules'));
+		$this->opts = new Console_Getopt(mySfYaml::get('app_rules'));
 
 		if(count($this->argv) > 1) {
 			try {
 				$this->opts->parse();
 
 				foreach($this->opts->getOptions() as $arg) {
-					$opt_config = mySfYaml::get('app_rules_'.$arg);
+					$opt_config = mySfYaml::get('app_configuration_'.$arg);
 					
 					if(!isset($opt_config['callback'])) {
 						throw new CmsInstallerException($arg.' has not a callback configuration (callback parameter not found).');
@@ -41,7 +41,7 @@ class CmsInstallerApp {
 				}
 			}
 			catch(Zend_Console_Getopt_Exception $e) {
-				CmsInstallerApp::showError('Invalid argument', '"'.$param.'" is not a valid argument. Show help by using --help argument.');
+				CmsInstallerApp::showError('Invalid argument', 'Show help by using --help argument.');
 			}
 			catch(CmsInstallerException $e) {
 				CmsInstallerApp::showError('Configuration error', $e->getMessage());
@@ -50,17 +50,18 @@ class CmsInstallerApp {
 	}
 
 	private function callback($class, $method, $value) {
+		$class.= 'Task';
+		$method = 'execute'.ucfirst($method);
+
 		if(!class_exists($class)) {
 			throw new CmsInstallerException($class.' class does not exist');
 		}
-	
-		$method = 'execute'.ucfirst($method);
 	
 		if(!method_exists($class, $method)) {
 			throw new CmsInstallerException($class.'::'.$method.' does not exist');
 		}
 
-		$callback = new $class($value);
+		$callback = new $class($value, $this);
 		$callback->$method();
 	}
 
@@ -76,5 +77,9 @@ class CmsInstallerApp {
 	public static function showError($title, $message) {
 		Cli::printError($title, $message);
 		exit(1);
+	}
+
+	public function getOpts() {
+		return $this->opts;
 	}
 }

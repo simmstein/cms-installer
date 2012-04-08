@@ -1,20 +1,27 @@
 app:
   rules:
+    "version|v"   : ~
+    "help|h"      : ~
+    "install|i=w" : ~
+
+  configuration:
     version: 
       description: "Show CMS Installer version"
+      param: ~
       callback:
-        class: InformationTask
+        class: Information
         method: version
 
     help: 
       description: "Show help"
+      param: ~
       callback:
-        class: InformationTask
+        class: Information
         method: help
       
     install:
+      param: '<cms name>'
       description: "Install a CMS"
       callback:
-        class: BasicTask
-        method: version
-
+        class: Installation
+        method: install
