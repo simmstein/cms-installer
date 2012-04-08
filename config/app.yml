@@ -3,7 +3,7 @@ app:
   author: 'Simon Vieille'
   contact: 'simon@deblan.fr / www.deblan.tv'
   rules:
-    "version|v"   : ~
+    "version|v-s"   : ~
     "help|h-s"    : ~
     "install|i=w" : ~
 
