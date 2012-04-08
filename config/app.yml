@@ -1,5 +1,20 @@
 app:
   rules:
-    "version|v"   : "Show CMS Installer version"
-    "help|h"      : "Show help"
-    "install|i=w" : "Install a CMS"
+    version: 
+      description: "Show CMS Installer version"
+      callback:
+        class: InformationTask
+        method: version
+
+    help: 
+      description: "Show help"
+      callback:
+        class: InformationTask
+        method: help
+      
+    install:
+      description: "Install a CMS"
+      callback:
+        class: BasicTask
+        method: version
+

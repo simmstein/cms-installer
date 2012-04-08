@@ -3,7 +3,6 @@
 require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'autoload'.DIRECTORY_SEPARATOR.'Autoload.class.php';
 Autoload::register();
 
-$CmsInstallerApp = new CmsInstallerApp();
+$CmsInstallerApp = new CmsInstallerApp($argv);
 $CmsInstallerApp->init();
 
-echo $CmsInstallerApp->get('help');

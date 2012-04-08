@@ -18,10 +18,14 @@ class Cli {
 	}
 
 	public static function  printNotice($title, $message) {
-		self::printMessage($title, $message, 'white', 'cyan');
+		self::printMessage($title, $message, 'light_red', 'white');
 	}
 
 	public static function printInfo($title, $message) {
 		self::printMessage($title, $message, 'green', null);
+	}
+
+	public static function printBlankLine() {
+		echo PHP_EOL;
 	}
 }
