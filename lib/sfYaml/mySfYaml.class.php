@@ -2,12 +2,12 @@
 
 class mySfYaml extends sfYaml {
 	private static $file_loaded = false;
-	private static $file_content = null;
+	private static $global_config = null;
 
 	public static function load($input) {
-		self::$file_content = parent::load($input);
+		self::$global_config = parent::load($input);
 		self::$file_loaded = true;
-		return self::$file_content;
+		return self::$global_config;
 	}
 
 	public static function merge($input) {
@@ -15,12 +15,40 @@ class mySfYaml extends sfYaml {
 			return self::load($input);
 		}
 
-		self::$file_content = array_merge(self::$file_content, (array)parent::load($input));
-		return self::$file_content;
+		$config = sfYaml::load($input);
+
+		if($config) {
+			self::recursiveMerge(self::$global_config, $config);
+		}
+		
+		return self::$global_config;
+	}
+
+	private static function recursiveMerge(&$global_config, $config) {
+		foreach($config as $key => $value) {
+			if(!isset($global_config[$key])) {
+				$global_config[$key] = $value;
+			}
+			else {
+				if(is_array($value)) {
+					foreach($value as $vkey => $vvalue) {
+						if(!isset($global_config[$key][$vkey])) {
+							$global_config[$key][$vkey] = $vvalue;
+						}
+						else {
+							self::recursiveMerge($global_config[$key], $value);
+						}
+					}
+				}
+				else {
+					$global_config[$key] = $value;
+				}
+			}
+		}
 	}
 
 	public static function getAll() {
-		return self::$file_content;
+		return self::$global_config;
 	}
 
 	public static function get($var) {
@@ -28,7 +56,7 @@ class mySfYaml extends sfYaml {
 			throw new Exception('Yaml file is not loaded yet, please see sfYaml::load method');			
 		}
 
-		$road = self::$file_content;
+		$road = self::$global_config;
 
 		$parts = explode('_', $var);
 

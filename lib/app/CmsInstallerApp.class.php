@@ -12,8 +12,20 @@ class CmsInstallerApp {
 		$files = sfFinder::type('file')->name('*.yml')->in(ROOT.DIRECTORY_SEPARATOR.'config');
 
 		foreach($files as $file) {
-			mySfYaml::merge($file);
+			$config = sfYaml::load($file);
+
+			if($config) {
+				if(mySfYaml::getAll()) {
+					mySfYaml::merge($file);
+				}
+				else {
+					mySfYaml::load($file);
+				}
+			}
 		}
+
+		echo '<pre>', var_dump( mySfYaml::getAll() ), '</pre>';
+		die;
 	}
 
 	public function init() {
