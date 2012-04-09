@@ -41,4 +41,5 @@ ressources:
     Pluxml:
       versions:
         default:
+          callback: Pluxml
           url: http://telechargements.pluxml.org/download.php

@@ -4,7 +4,7 @@ abstract class BasicInstallationTask {
 	protected $destination;
 
 	public function __construct($destination) {
-		$this->destination = $destination;
+		$this->destination = getcwd().DIRECTORY_SEPARATOR.$destination;
 	}
 	
 	abstract public function execute();

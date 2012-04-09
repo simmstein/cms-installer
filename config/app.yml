@@ -6,8 +6,8 @@ app:
     "version|v-s" : ~
     "list|l-s"    : ~
     "help|h-s"    : ~
-    "install|i=w" : ~
-    "to=w"        : ~
+    "install|i=s" : ~
+    "to=s"        : ~
 
   configuration:
     to: {hide: true}

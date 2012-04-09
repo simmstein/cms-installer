@@ -8,7 +8,13 @@ class Cli {
 		$output = '';
 
 		if(!empty($title)) {
-			$output.= $cliColors->getColoredString(' '.str_pad($title, self::$width, ' ', STR_PAD_RIGHT), $foreground, $background).' ';
+			if(strlen($title) > self::$width) {
+				$title.= "\n";
+			}
+			else {
+				$title = str_pad($title, self::$width, ' ', STR_PAD_RIGHT);
+			}
+			$output.= $cliColors->getColoredString(' '.$title, $foreground, $background).' ';
 		}
 
 		$output.= $message.($eol ? PHP_EOL : '');
