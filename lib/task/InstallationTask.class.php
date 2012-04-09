@@ -2,8 +2,8 @@
 
 class InstallationTask extends BasicTask {
 	public function executeInstall() {
-		$this->arg_cms     = $this->value;
-		$this->arg_version = ($v = $this->cmsInstallerApp->get('version')) ? $v : 'default';
+		$this->arg_cms     = $this->getValue();
+		$this->arg_version = ($v = $this->getCmsInstallerApp()->get('version')) ? $v : 'default';
 
 		$this->cms_configuration = mySfYaml::get('ressources_cms_'.$this->arg_cms);
 		$this->cms_version       = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version);
@@ -11,7 +11,7 @@ class InstallationTask extends BasicTask {
 
 		try {
 			if(!$this->cms_configuration) {
-				throw new CmsInstallerException($arg_cms.' is not a valid cms. Show cms list by using --list argument.');
+				throw new CmsInstallerException($this->arg_cms.' is not a valid cms. Show cms list by using --list argument.');
 			}
 
 			if(!$this->cms_version) {
@@ -30,7 +30,8 @@ class InstallationTask extends BasicTask {
 			$this->tempName = $this->getTempName();
 			$this->download();
 			echo PHP_EOL;
-			$this->unpack();			
+			$this->unpack();	
+			$this->clearFile();
 		}
 		catch(CmsInstallerException $e) {
 			Cli::printError('Error', $e->getMessage());
@@ -63,7 +64,7 @@ class InstallationTask extends BasicTask {
 
 		if(curl_errno($curl)) {
 			fclose($fileopen);
-			unlink($this->tempName);	
+			$this->clearFile();
 			throw new CmsInstallerException('Download has failed.');
 		}
 
@@ -74,9 +75,49 @@ class InstallationTask extends BasicTask {
 
 	public function unpack() {
 		Cli::printInfo('Unpack', 'Please wait...');
+
+		$finfo = new finfo(FILEINFO_MIME);
+		$ftype = explode(';', $finfo->file($this->tempName));
+		$type  = $ftype[0];
+
+
+		$destination = ($to = $this->getCmsInstallerApp()->get('to')) ? $to : '.';
+
+		if(!is_dir($destination)) {
+			throw new CmsInstallerException('Extract destination does not exist (extract to '.$destination.').');
+		}
+		else {
+			if(!is_writable($destination)) {
+				throw new CmsInstallerException('Extract destination is not writable (extract to '.$destination.').');
+			}
+		}
+
+		
+		if(in_array($type, array('application/zip', 'application/x-zip', 'application/x-zip-compressed'))) {
+			$zip = new ZipArchive();
+			if(!$zip->open($this->tempName)) {
+				throw new CmsInstallerException('ZipArchive can not open package.');
+			}
+
+			$zip->extractTo($destination);
+			$zip->close();
+			Cli::printInfo('Extact to', $destination);
+		}
+		elseif(in_array($type, array('application/x-tar', 'application/x-gtar', ))) {
+			throw new CmsInstallerException('Sorry but tar files are not supported yet...');
+		}
+		else {
+			throw new CmsInstallerException('The archive is either in unknown format or damaged.');
+		}
 	}
 
 	public function getTempName() {
 		return $this->arg_cms.'-'.mt_rand();
+	}
+
+	public function clearFile() {
+		if(is_file($this->tempName)) {
+			unlink($this->tempName);
+		}
 	}
 }

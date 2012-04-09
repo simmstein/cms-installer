@@ -2,19 +2,21 @@
 	
 class InformationTask extends BasicTask {
 	public function executeHelp() {
-		foreach($this->cmsInstallerApp->getOpts()->getRules() as $opt => $rule) {
-			if(($this->value !== true && $this->value == $opt) || $this->value === true) {
-				$name        = '--'.$opt.(isset($rule['alias'][1]) ? ',-'.$rule['alias'][1] : '');
-				$param       = mySfYaml::get('app_configuration_'.$opt.'_param');
-				$description = mySfYaml::get('app_configuration_'.$opt.'_description');
+		foreach($this->getCmsInstallerApp()->getOpts()->getRules() as $opt => $rule) {
+			if(!mySfYaml::get('app_configuration_'.$opt.'_hide')) {
+				if(($this->getValue() !== true && $this->getValue() == $opt) || $this->getValue() === true) {
+					$name        = '--'.$opt.(isset($rule['alias'][1]) ? ',-'.$rule['alias'][1] : '');
+					$param       = mySfYaml::get('app_configuration_'.$opt.'_param');
+					$description = mySfYaml::get('app_configuration_'.$opt.'_description');
 
-				Cli::printNotice($opt, '');
-				Cli::printInfo(' Command', $name);
-				if(!empty($param)) {
-					Cli::printInfo(' Param', $param);
+					Cli::printNotice($opt, '');
+					Cli::printInfo(' Command', $name);
+					if(!empty($param)) {
+						Cli::printInfo(' Param', $param);
+					}
+					Cli::printInfo(' Description', $description);
+					Cli::printBlankLine();
 				}
-				Cli::printInfo(' Description', $description);
-				Cli::printBlankLine();
 			}
 		}
 	}
@@ -25,5 +27,22 @@ class InformationTask extends BasicTask {
 		Cli::printInfo('Version', mySfYaml::get('app_version'));
 		Cli::printInfo('Author', mySfYaml::get('app_author'));
 		Cli::printInfo('Contact', mySfYaml::get('app_contact'));
+	}
+
+	public function executeList() {
+		$cmss = mySfYaml::get('ressources_cms');
+
+		if(is_array($cmss)) {
+			foreach($cmss as $cms_name => $cms_info) {
+				Cli::printNotice($cms_name, '');
+				if(isset($cms_info['versions']) && is_array($cms_info['versions'])) {
+					foreach($cms_info['versions'] as $version => $info) {
+						Cli::printInfo($version, $info['url']);
+						Cli::printInfo(' ', $this->getCmsInstallerApp()->getArgv(0).' --install "'.$cms_name.'" --version "'.$version.'"');
+						Cli::printBlankLine();
+					}
+				}
+			}
+		}
 	}
 }

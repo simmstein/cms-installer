@@ -5,18 +5,26 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Autoload	lib/autoload/Autoload.class.php	/^class Autoload {$/;"	c
+BasicTask	lib/task/BasicTask.class.php	/^class BasicTask {$/;"	c
 Cli	lib/cli/Cli.class.php	/^class Cli {$/;"	c
 CliColors	lib/cli/CliColors.class.php	/^class CliColors {$/;"	c
-CmsInstallerApp	cms	/^$CmsInstallerApp = new CmsInstallerApp();$/;"	v
+CmsInstallerApp	cms	/^	$CmsInstallerApp = new CmsInstallerApp($argv);$/;"	v
 CmsInstallerApp	lib/app/CmsInstallerApp.class.php	/^class CmsInstallerApp {$/;"	c
+CmsInstallerException	lib/exception/CmsInstallerException.class.php	/^class CmsInstallerException extends Exception {$/;"	c
+Console_Getopt	lib/Zend/Console_Getopt.class.php	/^class Console_Getopt extends Zend_Console_Getopt {$/;"	c
+InformationTask	lib/task/InformationTask.class.php	/^class InformationTask extends BasicTask {$/;"	c
+InstallationTask	lib/task/InstallationTask.class.php	/^class InstallationTask extends BasicTask {$/;"	c
 PREG_BAD_UTF8_OFFSET_ERROR	lib/sfYaml/sfYamlParser.class.php	/^  define('PREG_BAD_UTF8_OFFSET_ERROR', 5);$/;"	d
+ROOT	cms	/^define('ROOT', dirname(__FILE__));$/;"	d
 Zend_Console_Getopt	lib/Zend/Console/Getopt.php	/^class Zend_Console_Getopt$/;"	c
 Zend_Console_Getopt_Exception	lib/Zend/Console/Getopt/Exception.php	/^class Zend_Console_Getopt_Exception extends Zend_Exception$/;"	c
 __construct	lib/Zend/Console/Getopt.php	/^    public function __construct($rules, $argv = null, $getoptConfig = array())$/;"	f
 __construct	lib/Zend/Console/Getopt/Exception.php	/^    public function __construct($message, $usage = '')$/;"	f
-__construct	lib/app/CmsInstallerApp.class.php	/^	public function __construct() {$/;"	f
+__construct	lib/app/CmsInstallerApp.class.php	/^	public function __construct($argv) {$/;"	f
 __construct	lib/cli/CliColors.class.php	/^	public function __construct() {$/;"	f
 __construct	lib/sfYaml/sfYamlParser.class.php	/^  public function __construct($offset = 0)$/;"	f
+__construct	lib/task/BasicTask.class.php	/^	public function __construct($value, CmsInstallerApp $app) {$/;"	f
+__construct	lib/util/sfFinder.class.php	/^  public function __construct($test)$/;"	f
 __get	lib/Zend/Console/Getopt.php	/^    public function __get($key)$/;"	f
 __isset	lib/Zend/Console/Getopt.php	/^    public function __isset($key)$/;"	f
 __set	lib/Zend/Console/Getopt.php	/^    public function __set($key, $value)$/;"	f
@@ -49,19 +57,39 @@ _rules	lib/Zend/Console/Getopt.php	/^    protected $_rules = array();$/;"	v
 addArguments	lib/Zend/Console/Getopt.php	/^    public function addArguments($argv)$/;"	f
 addRules	lib/Zend/Console/Getopt.php	/^    public function addRules($rules)$/;"	f
 alias	lib/Zend/Console/Getopt.php	/^                $alias = strtolower($alias);$/;"	v
+arg_cms	lib/task/InstallationTask.class.php	/^		$this->arg_cms     = $this->getValue();$/;"	v
+arg_list	lib/util/sfFinder.class.php	/^      $arg_list = $arg_list[0];$/;"	v
+arg_list	lib/util/sfFinder.class.php	/^    $arg_list = func_get_args();$/;"	v
+arg_version	lib/task/InstallationTask.class.php	/^		$this->arg_version = ($v = $this->getCmsInstallerApp()->get('version')) ? $v : 'default';$/;"	v
+args	lib/util/sfFinder.class.php	/^    $args = func_get_args();$/;"	v
+args_to_array	lib/util/sfFinder.class.php	/^  protected function args_to_array($arg_list, $not = false)$/;"	f
 argv	lib/Zend/Console/Getopt.php	/^            $argv = array_slice($_SERVER['argv'], 1);$/;"	v
 argv	lib/Zend/Console/Getopt.php	/^        $argv = $this->_argv;$/;"	v
+argv	lib/app/CmsInstallerApp.class.php	/^		$this->argv = $argv;$/;"	v
+argv	lib/app/CmsInstallerApp.class.php	/^	private $argv;$/;"	v
 background_colors	lib/cli/CliColors.class.php	/^	private $background_colors = array();$/;"	v
 block	lib/sfYaml/sfYamlParser.class.php	/^            $block = $values['value'];$/;"	v
 c	lib/sfYaml/sfYamlParser.class.php	/^            $c = $this->getRealCurrentLineNb() + 1;$/;"	v
 c	lib/sfYaml/sfYamlParser.class.php	/^            $c = $this->getRealCurrentLineNb();$/;"	v
 c	lib/sfYaml/sfYamlParser.class.php	/^          $c = $this->getRealCurrentLineNb() + 1;$/;"	v
+callback	lib/app/CmsInstallerApp.class.php	/^		$callback = new $class($value, $this);$/;"	v
+callback	lib/app/CmsInstallerApp.class.php	/^	private function callback($class, $method, $value) {$/;"	f
+car	lib/util/sfFinder.class.php	/^      $car = $glob[$i];$/;"	v
 cast	lib/sfYaml/sfYamlInline.class.php	/^        $cast = intval($scalar);$/;"	v
 cleanup	lib/sfYaml/sfYamlParser.class.php	/^  protected function cleanup($value)$/;"	f
+clearFile	lib/task/InstallationTask.class.php	/^	public function clearFile() {$/;"	f
 cliColors	lib/cli/Cli.class.php	/^		$cliColors = CliColors::getInstance();$/;"	v
+cmsInstallerApp	lib/task/BasicTask.class.php	/^		$this->cmsInstallerApp = $app;$/;"	v
+cmsInstallerApp	lib/task/BasicTask.class.php	/^	private $cmsInstallerApp;$/;"	v
+cms_configuration	lib/task/InstallationTask.class.php	/^		$this->cms_configuration = mySfYaml::get('ressources_cms_'.$this->arg_cms);$/;"	v
+cms_version	lib/task/InstallationTask.class.php	/^		$this->cms_version       = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version);$/;"	v
+cms_version_url	lib/task/InstallationTask.class.php	/^		$this->cms_version_url   = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version.'_url');$/;"	v
+cmss	lib/task/InformationTask.class.php	/^		$cmss = mySfYaml::get('ressources_cms');$/;"	v
 colored_string	lib/cli/CliColors.class.php	/^		$colored_string = "";$/;"	v
+comparison	lib/util/sfFinder.class.php	/^    $comparison = array_key_exists(1, $matches) ? $matches[1] : '==';$/;"	v
 content	lib/sfYaml/sfYaml.class.php	/^      $content = ob_get_clean();$/;"	v
 count	lib/sfYaml/sfYamlParser.class.php	/^    $count = 0;$/;"	v
+curl	lib/task/InstallationTask.class.php	/^		$curl     = curl_init($this->cms_version_url);$/;"	v
 currentIndentation	lib/sfYaml/sfYamlParser.class.php	/^    $currentIndentation = $this->getCurrentLineIndentation();$/;"	v
 currentLine	lib/sfYaml/sfYamlParser.class.php	/^    $currentLine   = '',$/;"	v
 currentLine	lib/sfYaml/sfYamlParser.class.php	/^    $this->currentLine = $this->lines[++$this->currentLineNb];$/;"	v
@@ -69,6 +97,8 @@ currentLine	lib/sfYaml/sfYamlParser.class.php	/^    $this->currentLine = $this->
 currentLine	lib/sfYaml/sfYamlParser.class.php	/^    $this->currentLine = '';$/;"	v
 currentLineNb	lib/sfYaml/sfYamlParser.class.php	/^    $currentLineNb = -1,$/;"	v
 currentLineNb	lib/sfYaml/sfYamlParser.class.php	/^    $this->currentLineNb = -1;$/;"	v
+current_dir	lib/util/sfFinder.class.php	/^      $current_dir = opendir($dir);$/;"	v
+current_entry	lib/util/sfFinder.class.php	/^        $current_entry = $dir.DIRECTORY_SEPARATOR.$entryname;$/;"	v
 data	lib/sfYaml/sfYamlParser.class.php	/^              $data = array();$/;"	v
 data	lib/sfYaml/sfYamlParser.class.php	/^            $data = $this->refs[$isInPlace];$/;"	v
 data	lib/sfYaml/sfYamlParser.class.php	/^          $data = $isProcessed;$/;"	v
@@ -76,9 +106,19 @@ data	lib/sfYaml/sfYamlParser.class.php	/^    $data = array();$/;"	v
 data	lib/sfYaml/sfYamlParser.class.php	/^    $data = array(substr($this->currentLine, $newIndent));$/;"	v
 delimiter	lib/Zend/Console/Getopt.php	/^                $delimiter = $paramType = null;$/;"	v
 delimiter	lib/Zend/Console/Getopt.php	/^                $delimiter = substr($ruleCode, -2, 1);$/;"	v
+description	lib/task/InformationTask.class.php	/^					$description = mySfYaml::get('app_configuration_'.$opt.'_description');$/;"	v
+destination	lib/task/InstallationTask.class.php	/^		$destination = ($to = $this->getCmsInstallerApp()->get('to')) ? $to : '.';$/;"	v
+dir	lib/util/sfFinder.class.php	/^        $dir = $here_dir.'\/'.$dir;$/;"	v
+dir	lib/util/sfFinder.class.php	/^      $dir = realpath($arg_list[$i]);$/;"	v
+dir	lib/util/sfFinder.class.php	/^      $dir = str_replace('\\\\', '\/', $dir);$/;"	v
+dir	lib/util/sfFinder.class.php	/^    $dir = realpath($dir);$/;"	v
+discard	lib/util/sfFinder.class.php	/^  public function discard()$/;"	f
+discards	lib/util/sfFinder.class.php	/^    $this->discards = array_merge($this->discards, $this->args_to_array($args));$/;"	v
+discards	lib/util/sfFinder.class.php	/^  protected $discards               = array();$/;"	v
 doc	lib/Zend/Console/Getopt.php	/^        $doc = new DomDocument('1.0', 'utf-8');$/;"	v
 done	lib/sfYaml/sfYamlInline.class.php	/^            $done = true;$/;"	v
 done	lib/sfYaml/sfYamlInline.class.php	/^      $done = false;$/;"	v
+download	lib/task/InstallationTask.class.php	/^	public function download() {$/;"	f
 dump	lib/sfYaml/sfYaml.class.php	/^  public static function dump($array, $inline = 2)$/;"	f
 dump	lib/sfYaml/sfYamlDumper.class.php	/^  public function dump($input, $inline = 0, $indent = 0)$/;"	f
 dump	lib/sfYaml/sfYamlInline.class.php	/^  static public function dump($value)$/;"	f
@@ -90,14 +130,41 @@ error	lib/sfYaml/sfYamlParser.class.php	/^            $error = 'Offset doesn\\'t
 error	lib/sfYaml/sfYamlParser.class.php	/^            $error = 'Unable to parse line';$/;"	v
 error	lib/sfYaml/sfYamlParser.class.php	/^            $error = 'pcre.backtrack_limit reached on line';$/;"	v
 error	lib/sfYaml/sfYamlParser.class.php	/^            $error = 'pcre.recursion_limit reached on line';$/;"	v
+escaping	lib/util/sfFinder.class.php	/^          $escaping = false;$/;"	v
+escaping	lib/util/sfFinder.class.php	/^          $escaping = true;$/;"	v
+escaping	lib/util/sfFinder.class.php	/^      $escaping = false;$/;"	v
+escaping	lib/util/sfFinder.class.php	/^    $escaping = false;$/;"	v
 evaluateScalar	lib/sfYaml/sfYamlInline.class.php	/^  static protected function evaluateScalar($scalar)$/;"	f
+exec	lib/util/sfFinder.class.php	/^  public function exec()$/;"	f
+exec_ok	lib/util/sfFinder.class.php	/^  protected function exec_ok($dir, $entry)$/;"	f
+execs	lib/util/sfFinder.class.php	/^  protected $execs                  = array();$/;"	v
+executeHelp	lib/task/InformationTask.class.php	/^	public function executeHelp() {$/;"	f
+executeInstall	lib/task/InstallationTask.class.php	/^	public function executeInstall() {$/;"	f
+executeList	lib/task/InformationTask.class.php	/^	public function executeList() {$/;"	f
+executeVersion	lib/task/InformationTask.class.php	/^	public function executeVersion() {$/;"	f
 falseValues	lib/sfYaml/sfYamlInline.class.php	/^      $falseValues = array('false');$/;"	v
 falseValues	lib/sfYaml/sfYamlInline.class.php	/^      $falseValues = array('false', 'off', '-', 'no', 'n');$/;"	v
 file	lib/sfYaml/sfYaml.class.php	/^      $file = $input;$/;"	v
 file	lib/sfYaml/sfYaml.class.php	/^    $file = '';$/;"	v
 file_content	lib/sfYaml/mySfYaml.class.php	/^	private static $file_content = null;$/;"	v
 file_loaded	lib/sfYaml/mySfYaml.class.php	/^	private static $file_loaded = false;$/;"	v
+fileopen	lib/task/InstallationTask.class.php	/^		$fileopen = fopen($this->tempName, 'w');$/;"	v
+files	lib/app/CmsInstallerApp.class.php	/^		$files = sfFinder::type('file')->name('*.yml')->in(ROOT.DIRECTORY_SEPARATOR.'config');$/;"	v
+files	lib/autoload/Autoload.class.php	/^		$files = sfFinder::type('file')->name('*.class.php')->in(ROOT.DIRECTORY_SEPARATOR.'lib');$/;"	v
+files	lib/util/sfFinder.class.php	/^              $files = array_merge($files, $this->search_in($current_entry, $depth + 1));$/;"	v
+files	lib/util/sfFinder.class.php	/^            $files = array_merge($files, $this->search_in($current_entry, $depth + 1));$/;"	v
+files	lib/util/sfFinder.class.php	/^        $files = array_merge($files, $temp_files);$/;"	v
+files	lib/util/sfFinder.class.php	/^      $files = array_merge($files, $new_files);$/;"	v
+files	lib/util/sfFinder.class.php	/^    $files    = array();$/;"	v
+files	lib/util/sfFinder.class.php	/^    $files = array();$/;"	v
+filesize	lib/util/sfFinder.class.php	/^    $filesize = filesize($dir.DIRECTORY_SEPARATOR.$entry);$/;"	v
+finder	lib/util/sfFinder.class.php	/^    $finder = clone $this;$/;"	v
+finder	lib/util/sfFinder.class.php	/^    $finder = new self();$/;"	v
+finfo	lib/task/InstallationTask.class.php	/^		$finfo = new finfo(FILEINFO_MIME);$/;"	v
 first	lib/sfYaml/sfYamlParser.class.php	/^            $first = reset($value);$/;"	v
+first_byte	lib/util/sfFinder.class.php	/^        $first_byte = false;$/;"	v
+first_byte	lib/util/sfFinder.class.php	/^        $first_byte = true;$/;"	v
+first_byte	lib/util/sfFinder.class.php	/^    $first_byte = true;$/;"	v
 flag	lib/Zend/Console/Getopt.php	/^                $flag = strtolower($flag);$/;"	v
 flag	lib/Zend/Console/Getopt.php	/^            $flag = $this->_ruleMap[$flag];$/;"	v
 flag	lib/Zend/Console/Getopt.php	/^            $flag = strtolower($flag);$/;"	v
@@ -109,10 +176,17 @@ flagList	lib/Zend/Console/Getopt.php	/^                $flagList = $ruleCode;$/;
 flagList	lib/Zend/Console/Getopt.php	/^                $flagList = strtolower($flagList);$/;"	v
 flags	lib/Zend/Console/Getopt.php	/^            $flags = array();$/;"	v
 flags	lib/Zend/Console/Getopt.php	/^            $flags = explode('|', $flagList);$/;"	v
+follow_link	lib/util/sfFinder.class.php	/^    $this->follow_link = true;$/;"	v
+follow_link	lib/util/sfFinder.class.php	/^  protected $follow_link            = false;$/;"	v
+follow_link	lib/util/sfFinder.class.php	/^  public function follow_link()$/;"	f
 foreground_colors	lib/cli/CliColors.class.php	/^	private $foreground_colors = array();$/;"	v
+ftype	lib/task/InstallationTask.class.php	/^		$ftype = explode(';', $finfo->file($this->tempName));$/;"	v
 get	lib/app/CmsInstallerApp.class.php	/^	public function get($param) {$/;"	f
 get	lib/sfYaml/mySfYaml.class.php	/^	public static function get($var) {$/;"	f
+getAll	lib/sfYaml/mySfYaml.class.php	/^	public static function getAll() {$/;"	f
+getArgv	lib/app/CmsInstallerApp.class.php	/^	public function getArgv($n=null) {$/;"	f
 getBackgroundColors	lib/cli/CliColors.class.php	/^	public function getBackgroundColors() {$/;"	f
+getCmsInstallerApp	lib/task/BasicTask.class.php	/^	protected function getCmsInstallerApp() {$/;"	f
 getColoredString	lib/cli/CliColors.class.php	/^	public function getColoredString($string, $foreground_color = null, $background_color = null) {$/;"	f
 getCurrentLineIndentation	lib/sfYaml/sfYamlParser.class.php	/^  protected function getCurrentLineIndentation()$/;"	f
 getForegroundColors	lib/cli/CliColors.class.php	/^	public function getForegroundColors() {$/;"	f
@@ -120,12 +194,25 @@ getInstance	lib/cli/CliColors.class.php	/^	public static function getInstance() 
 getNextEmbedBlock	lib/sfYaml/sfYamlParser.class.php	/^  protected function getNextEmbedBlock($indentation = null)$/;"	f
 getOption	lib/Zend/Console/Getopt.php	/^    public function getOption($flag)$/;"	f
 getOptions	lib/Zend/Console/Getopt.php	/^    public function getOptions()$/;"	f
+getOpts	lib/app/CmsInstallerApp.class.php	/^	public function getOpts() {$/;"	f
 getRealCurrentLineNb	lib/sfYaml/sfYamlParser.class.php	/^  protected function getRealCurrentLineNb()$/;"	f
 getRemainingArgs	lib/Zend/Console/Getopt.php	/^    public function getRemainingArgs()$/;"	f
+getRules	lib/Zend/Console_Getopt.class.php	/^	public function getRules() {$/;"	f
 getSpecVersion	lib/sfYaml/sfYaml.class.php	/^  static public function getSpecVersion()$/;"	f
+getTempName	lib/task/InstallationTask.class.php	/^	public function getTempName() {$/;"	f
 getTimestampRegex	lib/sfYaml/sfYamlInline.class.php	/^  static protected function getTimestampRegex()$/;"	f
 getUsageMessage	lib/Zend/Console/Getopt.php	/^    public function getUsageMessage()$/;"	f
 getUsageMessage	lib/Zend/Console/Getopt/Exception.php	/^    public function getUsageMessage()$/;"	f
+getValue	lib/task/BasicTask.class.php	/^	protected function getValue() {$/;"	f
+get_type	lib/util/sfFinder.class.php	/^  public function get_type()$/;"	f
+glob_to_regex	lib/util/sfFinder.class.php	/^  public static function glob_to_regex($glob)$/;"	f
+here_dir	lib/util/sfFinder.class.php	/^    $here_dir = getcwd();$/;"	v
+ignore_version_control	lib/util/sfFinder.class.php	/^    $this->ignore_version_control = $ignore;$/;"	v
+ignore_version_control	lib/util/sfFinder.class.php	/^  protected $ignore_version_control = true;$/;"	v
+ignore_version_control	lib/util/sfFinder.class.php	/^  public function ignore_version_control($ignore = true)$/;"	f
+ignores	lib/util/sfFinder.class.php	/^      $ignores = array('.svn', '_svn', 'CVS', '_darcs', '.arch-params', '.monotone', '.bzr', '.git', '.hg');$/;"	v
+in	lib/util/sfFinder.class.php	/^  public function in()$/;"	f
+in_curlies	lib/util/sfFinder.class.php	/^    $in_curlies = 0;$/;"	v
 indent	lib/sfYaml/sfYamlParser.class.php	/^      $indent = $this->getCurrentLineIndentation();$/;"	v
 init	lib/app/CmsInstallerApp.class.php	/^	public function init() {$/;"	f
 input	lib/sfYaml/sfYaml.class.php	/^      $input = is_array($retval) ? $retval : $content;$/;"	v
@@ -135,10 +222,13 @@ isCurrentLineComment	lib/sfYaml/sfYamlParser.class.php	/^  protected function is
 isCurrentLineEmpty	lib/sfYaml/sfYamlParser.class.php	/^  protected function isCurrentLineEmpty()$/;"	f
 isInPlace	lib/sfYaml/sfYamlParser.class.php	/^            $isInPlace = substr($values['value'], 1);$/;"	v
 isNextLineIndented	lib/sfYaml/sfYamlParser.class.php	/^  protected function isNextLineIndented()$/;"	f
+isPathAbsolute	lib/util/sfFinder.class.php	/^  public static function isPathAbsolute($path)$/;"	f
 isProcessed	lib/sfYaml/sfYamlParser.class.php	/^            $isProcessed = $merged;$/;"	v
 isQuoted	lib/sfYaml/sfYamlInline.class.php	/^          $isQuoted = in_array($sequence[$i], array('"', "'"));$/;"	v
 isRef	lib/sfYaml/sfYamlParser.class.php	/^          $isRef = $matches['ref'];$/;"	v
 isRef	lib/sfYaml/sfYamlParser.class.php	/^      $isRef = $isInPlace = $isProcessed = false;$/;"	v
+is_discarded	lib/util/sfFinder.class.php	/^  protected function is_discarded($dir, $entry)$/;"	f
+is_pruned	lib/util/sfFinder.class.php	/^  protected function is_pruned($dir, $entry)$/;"	f
 j	lib/Zend/Console/Getopt.php	/^        $j = array();$/;"	v
 json	lib/Zend/Console/Getopt.php	/^        $json = Zend_Json::encode($j);$/;"	v
 key	lib/Zend/Console/Getopt.php	/^            $key = $this->_ruleMap[$key];$/;"	v
@@ -151,35 +241,62 @@ len	lib/sfYaml/sfYamlInline.class.php	/^    $len = strlen($sequence);$/;"	v
 lines	lib/Zend/Console/Getopt.php	/^        $lines = array();$/;"	v
 lines	lib/sfYaml/sfYamlParser.class.php	/^    $lines         = array(),$/;"	v
 lines	lib/sfYaml/sfYamlParser.class.php	/^    $this->lines = explode("\\n", $this->cleanup($value));$/;"	v
+list	lib/util/sfFinder.class.php	/^    $list = array();$/;"	v
 load	lib/autoload/Autoload.class.php	/^	public static function load($class) {$/;"	f
 load	lib/sfYaml/mySfYaml.class.php	/^	public static function load($input) {$/;"	f
 load	lib/sfYaml/sfYaml.class.php	/^  public static function load($input)$/;"	f
 load	lib/sfYaml/sfYamlInline.class.php	/^  static public function load($value)$/;"	f
 ltrimmedLine	lib/sfYaml/sfYamlParser.class.php	/^    $ltrimmedLine = ltrim($this->currentLine, ' ');$/;"	v
+magnitude	lib/util/sfFinder.class.php	/^    $magnitude = array_key_exists(3, $matches) ? $matches[3] : '';$/;"	v
 mainFlag	lib/Zend/Console/Getopt.php	/^            $mainFlag = $flags[0];$/;"	v
+match_names	lib/util/sfFinder.class.php	/^  protected function match_names($dir, $entry)$/;"	f
 maxLen	lib/Zend/Console/Getopt.php	/^                $maxLen = strlen($linepart['name']);$/;"	v
 maxLen	lib/Zend/Console/Getopt.php	/^        $maxLen = 20;$/;"	v
+maxdepth	lib/util/sfFinder.class.php	/^    $this->maxdepth = $level;$/;"	v
+maxdepth	lib/util/sfFinder.class.php	/^  protected $maxdepth               = 1000000;$/;"	v
+maxdepth	lib/util/sfFinder.class.php	/^  public function maxdepth($level)$/;"	f
 mbEncoding	lib/sfYaml/sfYamlInline.class.php	/^      $mbEncoding = mb_internal_encoding();$/;"	v
 mbEncoding	lib/sfYaml/sfYamlParser.class.php	/^      $mbEncoding = mb_internal_encoding();$/;"	v
+merge	lib/sfYaml/mySfYaml.class.php	/^	public static function merge($input) {$/;"	f
 merged	lib/sfYaml/sfYamlParser.class.php	/^                $merged = array_merge($parsedItem, $merged);$/;"	v
 merged	lib/sfYaml/sfYamlParser.class.php	/^              $merged = array_merge($merged, $parsed);$/;"	v
 merged	lib/sfYaml/sfYamlParser.class.php	/^            $merged = array();$/;"	v
 method	lib/Zend/Console/Getopt.php	/^                $method = '_addRulesMode' . ucfirst($ruleMode);$/;"	v
+method	lib/app/CmsInstallerApp.class.php	/^		$method = 'execute'.ucfirst($method);$/;"	v
+mindepth	lib/util/sfFinder.class.php	/^    $this->mindepth = $level;$/;"	v
+mindepth	lib/util/sfFinder.class.php	/^  protected $mindepth               = 0;$/;"	v
+mindepth	lib/util/sfFinder.class.php	/^  public function mindepth($level)$/;"	f
 modifiers	lib/sfYaml/sfYamlParser.class.php	/^      $modifiers = isset($matches['modifiers']) ? $matches['modifiers'] : '';$/;"	v
 moveToNextLine	lib/sfYaml/sfYamlParser.class.php	/^  protected function moveToNextLine()$/;"	f
 moveToPreviousLine	lib/sfYaml/sfYamlParser.class.php	/^  protected function moveToPreviousLine()$/;"	f
 mySfYaml	lib/sfYaml/mySfYaml.class.php	/^class mySfYaml extends sfYaml {$/;"	c
+name	lib/task/InformationTask.class.php	/^					$name        = '--'.$opt.(isset($rule['alias'][1]) ? ',-'.$rule['alias'][1] : '');$/;"	v
+name	lib/util/sfFinder.class.php	/^    $name = strtolower($name);$/;"	v
+name	lib/util/sfFinder.class.php	/^  public function name()$/;"	f
+names	lib/util/sfFinder.class.php	/^    $this->names = array_merge($this->names, $this->args_to_array($args));$/;"	v
+names	lib/util/sfFinder.class.php	/^    $this->names = array_merge($this->names, $this->args_to_array($args, true));$/;"	v
+names	lib/util/sfFinder.class.php	/^  protected $names                  = array();$/;"	v
+nbArgList	lib/util/sfFinder.class.php	/^    $nbArgList = count($arg_list);$/;"	v
 newIndent	lib/sfYaml/sfYamlParser.class.php	/^      $newIndent = $indentation;$/;"	v
 newIndent	lib/sfYaml/sfYamlParser.class.php	/^      $newIndent = $this->getCurrentLineIndentation();$/;"	v
+new_files	lib/util/sfFinder.class.php	/^        $new_files = preg_replace('#^'.preg_quote(rtrim($dir, '\/'), '#').'\/#', '', $new_files);$/;"	v
+new_files	lib/util/sfFinder.class.php	/^      $new_files = str_replace('\\\\', '\/', $finder->search_in($dir));$/;"	v
 notEOF	lib/sfYaml/sfYamlParser.class.php	/^      $notEOF = $this->moveToNextLine();$/;"	v
 notEOF	lib/sfYaml/sfYamlParser.class.php	/^    $notEOF = $this->moveToNextLine();$/;"	v
+not_name	lib/util/sfFinder.class.php	/^  public function not_name()$/;"	f
+numargs	lib/util/sfFinder.class.php	/^      $numargs  = count($arg_list);$/;"	v
+numargs	lib/util/sfFinder.class.php	/^    $numargs  = func_num_args();$/;"	v
+numargs	lib/util/sfFinder.class.php	/^    $numargs = count($args);$/;"	v
 o	lib/Zend/Console/Getopt.php	/^                $o = (strlen($alias) == 1 ? '-' : '--') . $alias;$/;"	v
 offset	lib/sfYaml/sfYamlParser.class.php	/^    $offset        = 0,$/;"	v
 offset	lib/sfYaml/sfYamlParser.class.php	/^    $this->offset = $offset;$/;"	v
+one_name_rule	lib/util/sfFinder.class.php	/^    $one_name_rule = false;$/;"	v
+one_not_name_rule	lib/util/sfFinder.class.php	/^    $one_not_name_rule = false;$/;"	v
+opt_config	lib/app/CmsInstallerApp.class.php	/^					$opt_config = mySfYaml::get('app_configuration_'.$arg);$/;"	v
 optionNode	lib/Zend/Console/Getopt.php	/^            $optionNode = $doc->createElement('option');$/;"	v
 optionWithParam	lib/Zend/Console/Getopt.php	/^        $optionWithParam = ltrim(array_shift($argv), '-');$/;"	v
 optionsNode	lib/Zend/Console/Getopt.php	/^        $optionsNode = $doc->createElement('options');$/;"	v
-opts	lib/app/CmsInstallerApp.class.php	/^		$this->opts = new Zend_Console_Getopt(mySfYaml::get('app_rules'));$/;"	v
+opts	lib/app/CmsInstallerApp.class.php	/^		$this->opts = new Console_Getopt(mySfYaml::get('app_rules'));$/;"	v
 opts	lib/app/CmsInstallerApp.class.php	/^	private $opts;$/;"	v
 output	lib/cli/Cli.class.php	/^		$output = '';$/;"	v
 output	lib/sfYaml/sfYamlDumper.class.php	/^    $output = '';$/;"	v
@@ -197,6 +314,7 @@ param	lib/Zend/Console/Getopt.php	/^                    $param = array_shift($ar
 param	lib/Zend/Console/Getopt.php	/^                    $param = true;$/;"	v
 param	lib/Zend/Console/Getopt.php	/^                $param = true;$/;"	v
 param	lib/Zend/Console/Getopt.php	/^        $param = array_shift($l);$/;"	v
+param	lib/task/InformationTask.class.php	/^					$param       = mySfYaml::get('app_configuration_'.$opt.'_param');$/;"	v
 paramType	lib/Zend/Console/Getopt.php	/^                $paramType = substr($ruleCode, -1);$/;"	v
 parse	lib/Zend/Console/Getopt.php	/^    public function parse()$/;"	f
 parse	lib/sfYaml/sfYamlParser.class.php	/^  public function parse($value)$/;"	f
@@ -213,15 +331,28 @@ parts	lib/sfYaml/mySfYaml.class.php	/^		$parts = explode('_', $var);$/;"	v
 prefix	lib/sfYaml/sfYamlDumper.class.php	/^    $prefix = $indent ? str_repeat(' ', $indent) : '';$/;"	v
 previousIndent	lib/sfYaml/sfYamlParser.class.php	/^        $previousIndent = $matches['indent'];$/;"	v
 previousIndent	lib/sfYaml/sfYamlParser.class.php	/^    $previousIndent = 0;$/;"	v
+printBlankLine	lib/cli/Cli.class.php	/^	public static function printBlankLine() {$/;"	f
 printError	lib/cli/Cli.class.php	/^	public static function printError($title, $message) {$/;"	f
 printInfo	lib/cli/Cli.class.php	/^	public static function printInfo($title, $message) {$/;"	f
-printMessage	lib/cli/Cli.class.php	/^	public static function printMessage($title, $message, $foreground, $background, $out=STDOUT) {$/;"	f
+printInfoNoEOL	lib/cli/Cli.class.php	/^	public static function printInfoNoEOL($title, $message) {$/;"	f
+printMessage	lib/cli/Cli.class.php	/^	public static function printMessage($title, $message, $foreground, $background, $out=STDOUT, $eol=true) {$/;"	f
 printNotice	lib/cli/Cli.class.php	/^	public static function  printNotice($title, $message) {$/;"	f
+progress	lib/task/InstallationTask.class.php	/^			$progress = str_pad($purcent.'%', 5, ' ', STR_PAD_RIGHT);$/;"	v
+progressBar	lib/task/InstallationTask.class.php	/^	public static function progressBar($curl, $fd) {$/;"	f
+prune	lib/util/sfFinder.class.php	/^  public function prune()$/;"	f
+prunes	lib/util/sfFinder.class.php	/^    $this->prunes = array_merge($this->prunes, $this->args_to_array($args));$/;"	v
+prunes	lib/util/sfFinder.class.php	/^  protected $prunes                 = array();$/;"	v
+purcent	lib/task/InstallationTask.class.php	/^			$purcent  = round(100*$fd\/$curl, 2);$/;"	v
 r	lib/Zend/Console/Getopt.php	/^            $r = array();$/;"	v
 raw	lib/sfYaml/sfYamlInline.class.php	/^        $raw = $scalar;$/;"	v
 realFlag	lib/Zend/Console/Getopt.php	/^        $realFlag = $this->_ruleMap[$flag];$/;"	v
 refs	lib/sfYaml/sfYamlParser.class.php	/^    $refs          = array();$/;"	v
+regex	lib/util/sfFinder.class.php	/^      $regex = $args[1];$/;"	v
+regex	lib/util/sfFinder.class.php	/^    $regex = '';$/;"	v
 register	lib/autoload/Autoload.class.php	/^	public static function register() {$/;"	f
+relative	lib/util/sfFinder.class.php	/^    $this->relative = true;$/;"	v
+relative	lib/util/sfFinder.class.php	/^  protected $relative               = false;$/;"	v
+relative	lib/util/sfFinder.class.php	/^  public function relative()$/;"	f
 result	lib/sfYaml/sfYamlInline.class.php	/^        $result = self::parseMapping($value);$/;"	v
 result	lib/sfYaml/sfYamlInline.class.php	/^        $result = self::parseScalar($value);$/;"	v
 result	lib/sfYaml/sfYamlInline.class.php	/^        $result = self::parseSequence($value);$/;"	v
@@ -231,13 +362,13 @@ ret	lib/sfYaml/sfYamlParser.class.php	/^    $ret = false;$/;"	v
 retval	lib/sfYaml/sfYaml.class.php	/^      $retval = include($input);$/;"	v
 road	lib/sfYaml/mySfYaml.class.php	/^					$road = $road[$shift];$/;"	v
 road	lib/sfYaml/mySfYaml.class.php	/^		$road = self::$file_content;$/;"	v
-root	lib/app/CmsInstallerApp.class.php	/^	private static $root   = ''; $/;"	v
 rule	lib/Zend/Console/Getopt.php	/^            $rule = array();$/;"	v
 ruleArray	lib/Zend/Console/Getopt.php	/^        $ruleArray = array();$/;"	v
 ruleMode	lib/Zend/Console/Getopt.php	/^        $ruleMode = $this->_getoptConfig['ruleMode'];$/;"	v
 rules	lib/app/CmsInstallerApp.class.php	/^	private static $rules  = array();$/;"	v
 s	lib/Zend/Console/Getopt.php	/^        $s = array();$/;"	v
 scalar	lib/sfYaml/sfYamlInline.class.php	/^    $scalar = trim($scalar);$/;"	v
+search_in	lib/util/sfFinder.class.php	/^  protected function search_in($dir, $depth = 0)$/;"	f
 separator	lib/sfYaml/sfYamlParser.class.php	/^    $separator = '|' == $separator ? "\\n" : ' ';$/;"	v
 setAliases	lib/Zend/Console/Getopt.php	/^    public function setAliases($aliasMap)$/;"	f
 setArguments	lib/Zend/Console/Getopt.php	/^    public function setArguments($argv)$/;"	f
@@ -245,13 +376,37 @@ setHelp	lib/Zend/Console/Getopt.php	/^    public function setHelp($helpMap)$/;"	
 setOption	lib/Zend/Console/Getopt.php	/^    public function setOption($configKey, $configValue)$/;"	f
 setOptions	lib/Zend/Console/Getopt.php	/^    public function setOptions($getoptConfig)$/;"	f
 setSpecVersion	lib/sfYaml/sfYaml.class.php	/^  static public function setSpecVersion($version)$/;"	f
+setStrictLeadingDot	lib/util/sfFinder.class.php	/^  public static function setStrictLeadingDot($boolean)$/;"	f
+setStrictWildcardSlash	lib/util/sfFinder.class.php	/^  public static function setStrictWildcardSlash($boolean)$/;"	f
+setType	lib/util/sfFinder.class.php	/^  public function setType($name)$/;"	f
+sfFinder	lib/util/sfFinder.class.php	/^class sfFinder$/;"	c
+sfGlobToRegex	lib/util/sfFinder.class.php	/^class sfGlobToRegex$/;"	c
+sfNumberCompare	lib/util/sfFinder.class.php	/^class sfNumberCompare$/;"	c
 sfYaml	lib/sfYaml/sfYaml.class.php	/^class sfYaml$/;"	c
 sfYamlDumper	lib/sfYaml/sfYamlDumper.class.php	/^class sfYamlDumper$/;"	c
 sfYamlInline	lib/sfYaml/sfYamlInline.class.php	/^class sfYamlInline$/;"	c
 sfYamlParser	lib/sfYaml/sfYamlParser.class.php	/^class sfYamlParser$/;"	c
 shift	lib/sfYaml/mySfYaml.class.php	/^			$shift = array_shift($parts);		$/;"	v
 showError	lib/app/CmsInstallerApp.class.php	/^	public static function showError($title, $message) {$/;"	f
+size	lib/util/sfFinder.class.php	/^  public function size()$/;"	f
+sizeGlob	lib/util/sfFinder.class.php	/^    $sizeGlob = strlen($glob);$/;"	v
+size_ok	lib/util/sfFinder.class.php	/^  protected function size_ok($dir, $entry)$/;"	f
+sizes	lib/util/sfFinder.class.php	/^  protected $sizes                  = array();$/;"	v
+sort	lib/util/sfFinder.class.php	/^    $this->sort = 'name';$/;"	v
+sort	lib/util/sfFinder.class.php	/^    $this->sort = 'type';$/;"	v
+sort	lib/util/sfFinder.class.php	/^  protected $sort                   = false;$/;"	v
+sort_by_name	lib/util/sfFinder.class.php	/^  public function sort_by_name()$/;"	f
+sort_by_type	lib/util/sfFinder.class.php	/^  public function sort_by_type()$/;"	f
 spec	lib/sfYaml/sfYaml.class.php	/^    $spec = '1.2';$/;"	v
+strict_leading_dot	lib/util/sfFinder.class.php	/^  protected static $strict_leading_dot = true;$/;"	v
+strict_wildcard_slash	lib/util/sfFinder.class.php	/^  protected static $strict_wildcard_slash = true;$/;"	v
+target	lib/util/sfFinder.class.php	/^    $target = array_key_exists(2, $matches) ? $matches[2] : '';$/;"	v
+tempName	lib/task/InstallationTask.class.php	/^			$this->tempName = $this->getTempName();$/;"	v
+temp_files	lib/util/sfFinder.class.php	/^    $temp_files = array();$/;"	v
+temp_folders	lib/util/sfFinder.class.php	/^    $temp_folders = array();$/;"	v
+test	lib/util/sfFinder.class.php	/^    $this->test = $test;$/;"	v
+test	lib/util/sfFinder.class.php	/^  protected $test = '';$/;"	v
+test	lib/util/sfFinder.class.php	/^  public function test($number)$/;"	f
 text	lib/sfYaml/sfYamlParser.class.php	/^          $text = substr($text, 0, -1)."\\n";$/;"	v
 text	lib/sfYaml/sfYamlParser.class.php	/^        $text = preg_replace('#\\n+$#s', "\\n", $text);$/;"	v
 text	lib/sfYaml/sfYamlParser.class.php	/^        $text = preg_replace('#\\n+$#s', '', $text);$/;"	v
@@ -262,12 +417,20 @@ toArray	lib/Zend/Console/Getopt.php	/^    public function toArray()$/;"	f
 toJson	lib/Zend/Console/Getopt.php	/^    public function toJson()$/;"	f
 toString	lib/Zend/Console/Getopt.php	/^    public function toString()$/;"	f
 toXml	lib/Zend/Console/Getopt.php	/^    public function toXml()$/;"	f
+to_regex	lib/util/sfFinder.class.php	/^  protected function to_regex($str)$/;"	f
 trimmedValue	lib/sfYaml/sfYamlParser.class.php	/^    $trimmedValue = preg_replace('#^(\\#.*?\\n)+#s', '', $value, -1, $count);$/;"	v
 trimmedValue	lib/sfYaml/sfYamlParser.class.php	/^    $trimmedValue = preg_replace('#^\\-\\-\\-.*?\\n#s', '', $value, -1, $count);$/;"	v
 trueValues	lib/sfYaml/sfYamlInline.class.php	/^      $trueValues = array('true');$/;"	v
 trueValues	lib/sfYaml/sfYamlInline.class.php	/^      $trueValues = array('true', 'on', '+', 'yes', 'y');$/;"	v
 type	lib/Zend/Console/Getopt.php	/^            $type = $this->_rules[$flag]['paramType'];$/;"	v
 type	lib/Zend/Console/Getopt.php	/^        $type = 'string';$/;"	v
+type	lib/task/InstallationTask.class.php	/^		$type  = $ftype[0];$/;"	v
+type	lib/util/sfFinder.class.php	/^      $this->type = 'any';$/;"	v
+type	lib/util/sfFinder.class.php	/^      $this->type = 'directory';$/;"	v
+type	lib/util/sfFinder.class.php	/^      $this->type = 'file';$/;"	v
+type	lib/util/sfFinder.class.php	/^  protected $type                   = 'file';$/;"	v
+type	lib/util/sfFinder.class.php	/^  public static function type($name)$/;"	f
+unpack	lib/task/InstallationTask.class.php	/^	public function unpack() {$/;"	f
 usage	lib/Zend/Console/Getopt.php	/^        $usage = "Usage: {$this->_progname} [ options ]\\n";$/;"	v
 usage	lib/Zend/Console/Getopt/Exception.php	/^        $this->usage = $usage;$/;"	v
 usage	lib/Zend/Console/Getopt/Exception.php	/^    protected $usage = '';$/;"	v
@@ -284,7 +447,10 @@ value	lib/sfYaml/sfYamlParser.class.php	/^      $value = $trimmedValue;$/;"	v
 value	lib/sfYaml/sfYamlParser.class.php	/^      $value = preg_replace('#\\.\\.\\.\\s*$#s', '', $value);$/;"	v
 value	lib/sfYaml/sfYamlParser.class.php	/^    $value = preg_replace('#^\\%YAML[: ][\\d\\.]+.*\\n#su', '', $value, -1, $count);$/;"	v
 value	lib/sfYaml/sfYamlParser.class.php	/^    $value = str_replace(array("\\r\\n", "\\r"), "\\n", $value);$/;"	v
+value	lib/task/BasicTask.class.php	/^		$this->value = $value;$/;"	v
+value	lib/task/BasicTask.class.php	/^	private $value;$/;"	v
 willBeInlined	lib/sfYaml/sfYamlDumper.class.php	/^        $willBeInlined = $inline - 1 <= 0 || !is_array($value) || empty($value);$/;"	v
 xml	lib/Zend/Console/Getopt.php	/^        $xml = $doc->saveXML();$/;"	v
 yaml	lib/sfYaml/sfYaml.class.php	/^    $yaml = new sfYamlDumper();$/;"	v
 yaml	lib/sfYaml/sfYaml.class.php	/^    $yaml = new sfYamlParser();$/;"	v
+zip	lib/task/InstallationTask.class.php	/^			$zip = new ZipArchive();$/;"	v

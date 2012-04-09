@@ -3,11 +3,14 @@ app:
   author: 'Simon Vieille'
   contact: 'simon@deblan.fr / www.deblan.tv'
   rules:
-    "version|v-s"   : ~
+    "version|v-s" : ~
+    "list|l" : ~
     "help|h-s"    : ~
     "install|i=w" : ~
+    "to=w"        : ~
 
   configuration:
+    to: {hide: true}
     version: 
       description: "Show CMS Installer version"
       param: ~
@@ -21,9 +24,16 @@ app:
       callback:
         class: Information
         method: help
+
+    list: 
+      description: "Show CMS list"
+      param: ~
+      callback:
+        class: Information
+        method: list         
       
     install:
-      param: 'cms_name'
+      param: 'name [--version version] [--to destination]'
       description: "Install a CMS"
       callback:
         class: Installation

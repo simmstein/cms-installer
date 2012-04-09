@@ -79,6 +79,10 @@ class CmsInstallerApp {
 		exit(1);
 	}
 
+	public function getArgv($n=null) {
+		return $n === null ? $this->argv : (isset($this->argv[$n]) ? $this->argv[$n] : null);
+	}
+
 	public function getOpts() {
 		return $this->opts;
 	}
