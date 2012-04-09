@@ -8,6 +8,8 @@ class InstallationTask extends BasicTask {
 		$this->cms_configuration = mySfYaml::get('ressources_cms_'.$this->arg_cms);
 		$this->cms_version       = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version);
 		$this->cms_version_url   = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version.'_url');
+		$this->cms_callback      = mySfYaml::get('ressources_cms_'.$this->arg_cms.'_versions_'.$this->arg_version.'_callback');
+		$this->destination       = ($to = $this->getCmsInstallerApp()->get('to')) ? $to : '.';
 
 		try {
 			if(!$this->cms_configuration) {
@@ -32,6 +34,17 @@ class InstallationTask extends BasicTask {
 			echo PHP_EOL;
 			$this->unpack();	
 			$this->clearFile();
+
+			if($this->cms_callback) {
+				$callback = $this->cms_callback.'InstallationTask';
+
+				if(!class_exists($callback)) {
+					throw new CmsInstallerException($this->arg_cms.' (version '.$this->arg_version.') has not valid configuration (callback "'.$callback.'" class not found).');
+				}
+				Cli::printBlankLine();
+				$callback = new $callback($this->destination);
+				$callback->execute();
+			}
 		}
 		catch(CmsInstallerException $e) {
 			Cli::printError('Error', $e->getMessage());
@@ -80,15 +93,12 @@ class InstallationTask extends BasicTask {
 		$ftype = explode(';', $finfo->file($this->tempName));
 		$type  = $ftype[0];
 
-
-		$destination = ($to = $this->getCmsInstallerApp()->get('to')) ? $to : '.';
-
-		if(!is_dir($destination)) {
-			throw new CmsInstallerException('Extract destination does not exist (extract to '.$destination.').');
+		if(!is_dir($this->destination)) {
+			throw new CmsInstallerException('Extract destination does not exist (extract to '.$this->destination.').');
 		}
 		else {
-			if(!is_writable($destination)) {
-				throw new CmsInstallerException('Extract destination is not writable (extract to '.$destination.').');
+			if(!is_writable($this->destination)) {
+				throw new CmsInstallerException('Extract destination is not writable (extract to '.$this->destination.').');
 			}
 		}
 
@@ -99,9 +109,9 @@ class InstallationTask extends BasicTask {
 				throw new CmsInstallerException('ZipArchive can not open package.');
 			}
 
-			$zip->extractTo($destination);
+			$zip->extractTo($this->destination);
 			$zip->close();
-			Cli::printInfo('Extact to', $destination);
+			Cli::printInfo('Extact to', $this->destination);
 		}
 		elseif(in_array($type, array('application/x-tar', 'application/x-gtar', ))) {
 			throw new CmsInstallerException('Sorry but tar files are not supported yet...');

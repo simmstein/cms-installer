@@ -3,9 +3,11 @@ ressources:
     wordpress:
       versions:
         default:
+          callback: Wordpress
           url: http://fr.wordpress.org/latest-fr_FR.zip
         test:
-          url: http://fr.wordpress.org/latest-fr_FR.zip
+          callback: Wordpress
+          url: http://localhost/~simon/wp.zip
     test:
       versions:
         default:

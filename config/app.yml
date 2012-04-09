@@ -4,7 +4,7 @@ app:
   contact: 'simon@deblan.fr / www.deblan.tv'
   rules:
     "version|v-s" : ~
-    "list|l" : ~
+    "list|l"      : ~
     "help|h-s"    : ~
     "install|i=w" : ~
     "to=w"        : ~

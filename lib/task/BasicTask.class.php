@@ -1,6 +1,6 @@
 <?php
 
-class BasicTask {
+abstract class BasicTask {
 	private $value;
 	private $cmsInstallerApp;
 
