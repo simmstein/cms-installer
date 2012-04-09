@@ -5,11 +5,12 @@ ressources:
         default:
           callback: Wordpress
           url: http://fr.wordpress.org/latest-fr_FR.zip
-        test:
+        local:
           callback: Wordpress
           url: http://localhost/~simon/wp.zip
-    test:
+
+    moncms:
       versions:
         default:
-          url: http://localhost/~simon/tar.lol
-
+          callback: Moncms
+          url: http://localhost/~simon/moncms.zip

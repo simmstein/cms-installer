@@ -2,9 +2,6 @@
 	
 class WordpressInstallationTask extends BasicInstallationTask {
 	public function execute() {
-		define('ABSPATH', $this->destination.DIRECTORY_SEPARATOR);
-		define('WP_CONTENT_DIR', ABSPATH.'wp-content');
-
 		Cli::printNotice('Installation', 'Please complete the form:');
 		Cli::printBlankLine();
 
