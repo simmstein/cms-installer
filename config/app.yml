@@ -4,7 +4,7 @@ app:
   contact: 'simon@deblan.fr / www.deblan.tv'
   rules:
     "version|v-s" : ~
-    "list|l"      : ~
+    "list|l-s"    : ~
     "help|h-s"    : ~
     "install|i=w" : ~
     "to=w"        : ~
@@ -27,7 +27,7 @@ app:
 
     list: 
       description: "Show CMS list"
-      param: ~
+      param: '[cms]'
       callback:
         class: Information
         method: list         

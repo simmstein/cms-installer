@@ -34,12 +34,16 @@ class InformationTask extends BasicTask {
 
 		if(is_array($cmss)) {
 			foreach($cmss as $cms_name => $cms_info) {
-				Cli::printNotice($cms_name, '');
-				if(isset($cms_info['versions']) && is_array($cms_info['versions'])) {
-					foreach($cms_info['versions'] as $version => $info) {
-						Cli::printInfo($version, $info['url']);
-						Cli::printInfo(' ', $this->getCmsInstallerApp()->getArgv(0).' --install "'.$cms_name.'" --version "'.$version.'"');
-						Cli::printBlankLine();
+				if(($this->getValue() !== true && $this->getValue() == $cms_name) || $this->getValue() === true) {
+					Cli::printNotice($cms_name, '');
+					if(isset($cms_info['versions']) && is_array($cms_info['versions'])) {
+						foreach($cms_info['versions'] as $version => $info) {
+							$description = !empty($info['description']) ? $info['description'] : 'No description.';
+							Cli::printInfo(' '.$version, $description);
+							Cli::printInfo(' ', $info['url']);
+							Cli::printInfo(' ', $this->getCmsInstallerApp()->getArgv(0).' --install "'.$cms_name.'" --version "'.$version.'"');
+							Cli::printBlankLine();
+						}
 					}
 				}
 			}

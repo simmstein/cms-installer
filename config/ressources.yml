@@ -1,6 +1,6 @@
 ressources:
   cms:
-    wordpress:
+    Wordpress:
       versions:
         default:
           callback: Wordpress
@@ -9,8 +9,36 @@ ressources:
           callback: Wordpress
           url: http://localhost/~simon/wp.zip
 
-    moncms:
+    Drupal:
       versions:
         default:
-          callback: Moncms
-          url: http://localhost/~simon/moncms.zip
+          description: "Recommended release (version 7)"
+          url: http://ftp.drupal.org/files/projects/drupal-7.12.zip
+        v7.12:
+          description: "Recommended release (version 6)"
+          url: http://ftp.drupal.org/files/projects/drupal-7.12.zip
+        v6.25:
+          description: "Recommended release (version 6)"
+          url: http://ftp.drupal.org/files/projects/drupal-6.25.zip
+        v7dev:
+          description: "Development release (version 7)"
+          url: http://ftp.drupal.org/files/projects/drupal-7.x-dev.zip
+        v6dev:
+          description: "Development release (version 6)"
+          url: http://ftp.drupal.org/files/projects/drupal-6.x-dev.zip
+
+    Joomla:
+      versions:
+        default:
+          url: http://aide.joomla.fr/telechargements/joomla-2-5-package-d-installation-et-patchs/joomla-2-5-4-edition-francophone/download
+        v2.5:
+          url: http://aide.joomla.fr/telechargements/joomla-2-5-package-d-installation-et-patchs/joomla-2-5-4-edition-francophone/download
+        v1.7:
+          url: http://aide.joomla.fr/telechargements/joomla-1-7-package-d-installation-et-patchs/joomla-1-7-5-edition-francophone/download
+        v1.5:
+          url: http://aide.joomla.fr/telechargements/joomla-1-5-packages-d-installation-et-patchs/joomla-1-5-26-stable-fr/download
+
+    Pluxml:
+      versions:
+        default:
+          url: http://telechargements.pluxml.org/download.php
