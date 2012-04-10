@@ -23,9 +23,6 @@ class CmsInstallerApp {
 				}
 			}
 		}
-
-		echo '<pre>', var_dump( mySfYaml::getAll() ), '</pre>';
-		die;
 	}
 
 	public function init() {
